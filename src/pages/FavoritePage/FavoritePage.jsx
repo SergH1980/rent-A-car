@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ReturnButton } from "./FavoritePage.styled";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReturnButton } from './FavoritePage.styled';
 
-import FilterForm from "../../components/FilterForm/FilterForm";
-import CatalogCards from "../../components/common/CatalogCards/CatalogCards";
+import FilterForm from '../../components/FilterForm/FilterForm';
+import CatalogCards from '../../components/common/CatalogCards/CatalogCards';
 
 const FavoritePage = () => {
   const navigate = useNavigate();
   const [favCardList, setFavCardList] = useState([]);
-  const [localList, setLocalList] = useState(
-    JSON.parse(localStorage.getItem("favListItems")).length
-  );
+  const [localList, setLocalList] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("favListItems")) {
-      setFavCardList(JSON.parse(localStorage.getItem("favListItems")));
+    if (localStorage.getItem('favListItems')) {
+      setFavCardList(JSON.parse(localStorage.getItem('favListItems')));
     }
   }, [localList]);
 
   const navigateToCatalog = () => {
-    navigate("/catalog");
+    navigate('/catalog');
   };
 
   return (

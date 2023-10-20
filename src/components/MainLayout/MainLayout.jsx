@@ -1,23 +1,23 @@
-import { useState, useEffect, Suspense } from "react";
-import { Outlet } from "react-router-dom";
-import BurgerButton from "./BurgerButton/BurgerButton";
-import SideBar from "../SideBar/SideBar";
+import { useState, Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import BurgerButton from './BurgerButton/BurgerButton';
+import SideBar from '../SideBar/SideBar';
 
 import {
   MainWrap,
   Container,
   PageContainer,
   SidebarOverlay,
-} from "./MainLayout.styled";
+} from './MainLayout.styled';
 
 export default function MainLayout() {
   const [sideBarVisible, setSitebarVisible] = useState(false);
 
   const onSidebarToggle = () => {
-    setSitebarVisible((state) => !state);
+    setSitebarVisible(state => !state);
   };
 
-  const onOverlayClick = (event) => {
+  const onOverlayClick = event => {
     if (event.target === event.currentTarget) {
       onSidebarToggle();
     }

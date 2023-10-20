@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Suspense as SuspenseModule } from "react";
+import styled from 'styled-components';
+// import { Suspense as SuspenseModule } from "react";
 
 export const MainWrap = styled.main`
   max-width: 1440px;

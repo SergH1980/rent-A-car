@@ -1,20 +1,98 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { ModalWrap, ModalOverlay } from './Modal.styled';
+import {
+  ModalWrap,
+  ModalOverlay,
+  ImageHolder,
+  CarImg,
+  ModalCloseButton,
+  VscChromeClose,
+  CarHeader,
+  CarModel,
+  SecondaryInfoWrap,
+  Description,
+  OptionsWrap,
+  OptionsList,
+  OptionsHead,
+  ConditionsWrap,
+  ConditionsHead,
+  ConditionList,
+  ConditionLine,
+  ConditionItem,
+  ConditionValue,
+} from './Modal.styled';
 
-export default function Modal({ open, children, onClose, card }) {
+export default function Modal({ open, onClose, card }) {
   if (!open) return null;
+  const rentalConditions = card.rentalConditions.split('\n');
+  console.log(card);
+  const drivingAge = rentalConditions[0].split(': ');
+
+  const address = card.address.split(`, `);
+
+  const country = address[address.length - 1];
+  const city = address[address.length - 2];
+
+  const imgURL = card.img ? card.img : card.photoLink;
+  const secondaryInfoFirst = [
+    city,
+    country,
+    `Id: ${card.id}`,
+    `Year: ${card.year}`,
+    `Type: ${card.type}`,
+  ].join(' | ');
+
+  const secondaryInfoSecond = [
+    `Fuel Consumption: ${card.fuelConsumption}`,
+    `Engine Size: ${card.engineSize}`,
+  ].join(' | ');
+
   return ReactDom.createPortal(
     <>
       <ModalOverlay></ModalOverlay>
 
       <ModalWrap>
-        <div>{card.id}</div>
-        <div>{card.make}</div>
-        <button type="button" onClick={onClose}>
-          Close modal
-        </button>
-        {children}
+        <ModalCloseButton type="button" onClick={onClose}>
+          <VscChromeClose size={24} />
+        </ModalCloseButton>
+        <ImageHolder>
+          <CarImg src={imgURL} alt={card.make} />
+        </ImageHolder>
+        <CarHeader>
+          {card.make} <CarModel>{card.model}</CarModel>, {card.year}
+        </CarHeader>
+        <SecondaryInfoWrap>
+          <div>{secondaryInfoFirst}</div>
+          <div>{secondaryInfoSecond}</div>
+        </SecondaryInfoWrap>
+        <Description>{card.description}</Description>
+        <OptionsWrap>
+          <OptionsHead>Accessories and functionalities:</OptionsHead>
+          <OptionsList>
+            <div>{card.accessories.join(' | ')}</div>
+            <div>{card.functionalities.join(' | ')}</div>
+          </OptionsList>
+        </OptionsWrap>
+        <ConditionsWrap>
+          <ConditionsHead>Rental Conditions:</ConditionsHead>
+          <ConditionList>
+            <ConditionLine>
+              <ConditionItem>
+                Minimum age: <ConditionValue>{drivingAge[1]}</ConditionValue>
+              </ConditionItem>
+              <ConditionItem>{rentalConditions[1]}</ConditionItem>
+            </ConditionLine>
+            <ConditionLine>
+              <ConditionItem>{rentalConditions[1]}</ConditionItem>
+              <ConditionItem>
+                Mileage: <ConditionValue>{card.mileage}</ConditionValue>
+              </ConditionItem>
+              <ConditionItem>
+                Price: <ConditionValue>{card.rentalPrice}</ConditionValue>
+              </ConditionItem>
+            </ConditionLine>
+          </ConditionList>
+        </ConditionsWrap>
       </ModalWrap>
     </>,
     document.getElementById('modal')

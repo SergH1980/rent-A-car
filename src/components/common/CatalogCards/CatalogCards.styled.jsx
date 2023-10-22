@@ -48,6 +48,10 @@ export const MainInfoWrap = styled.div`
   margin-bottom: 8px;
 `;
 
+export const CarModel = styled.span`
+  color: rgba(52, 112, 255, 1);
+`;
+
 export const SecondaryInfoWrap = styled.div`
   margin-bottom: 31px;
   overflow: hidden;

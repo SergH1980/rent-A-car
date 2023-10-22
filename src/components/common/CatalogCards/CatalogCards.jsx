@@ -8,6 +8,7 @@ import {
   ImageHolder,
   CarImg,
   MainInfoWrap,
+  CarModel,
   SecondaryInfoWrap,
   CardButton,
   FavoriteButton,
@@ -26,8 +27,6 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
     favCards = JSON.parse(localStorage.getItem('favListItems'));
   }
 
-  console.log(clickedCard);
-
   function handleFavClick(e) {
     setFavClicked(!favClicked);
     const selectedCard = cardList.find(card => card.id === e.currentTarget.id);
@@ -45,12 +44,9 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
     }
   }
   function onOpen(event) {
-    console.log(event.currentTarget.getAttribute('car'));
     setClickedCard(event.currentTarget.getAttribute('car'));
     setIsModalOpen(true);
   }
-
-  console.log(clickedCard);
 
   function onClose() {
     setIsModalOpen(false);
@@ -84,8 +80,7 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
             </ImageHolder>
             <MainInfoWrap>
               <div>
-                <span>{card.make}</span> <span>{card.model}</span>,{' '}
-                <span>{card.year}</span>
+                {card.make} <CarModel>{card.model}</CarModel>, {card.year}
               </div>
               <div>{card.rentalPrice}</div>
             </MainInfoWrap>

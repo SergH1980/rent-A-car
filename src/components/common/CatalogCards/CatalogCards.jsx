@@ -95,9 +95,7 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
                 Learn more
               </CardButton>
               {clickedCard === card.id && (
-                <Modal open={isModalOpen} onClose={onClose} card={card}>
-                  {card.make}
-                </Modal>
+                <Modal open={isModalOpen} onClose={onClose} card={card}></Modal>
               )}
             </div>
           </CarCard>

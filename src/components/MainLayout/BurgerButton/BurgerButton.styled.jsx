@@ -1,12 +1,11 @@
-import styled from "styled-components";
-import { FaBars } from "react-icons/fa";
+import styled from 'styled-components';
+import { FaBars } from 'react-icons/fa';
 
 export const BurgerBtn = styled.button`
   background-color: transparent;
   color: #3470ff;
-  position: fixed;
+  position: absolute;
   top: 50px;
-  /* left: 50px; */
 
   width: 42px;
   height: 42px;

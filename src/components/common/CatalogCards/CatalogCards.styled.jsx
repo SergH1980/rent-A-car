@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { ReactComponent as FavIconNormal } from "../../../images/normal.svg";
-import { ReactComponent as FavIconSelected } from "../../../images/active.svg";
+import styled from 'styled-components';
+import { ReactComponent as FavIconNormal } from '../../../images/normal.svg';
+import { ReactComponent as FavIconSelected } from '../../../images/active.svg';
 
 export const CardListWrap = styled.div`
   display: flex;
@@ -39,6 +39,7 @@ export const CarImg = styled.img`
   width: 274px;
   height: 268px;
   object-fit: cover;
+  object-position: center;
 `;
 
 export const MainInfoWrap = styled.div`

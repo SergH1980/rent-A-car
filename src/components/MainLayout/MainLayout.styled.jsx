@@ -29,8 +29,8 @@ export const PageContainer = styled.div`
 export const SidebarOverlay = styled.div`
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.1);
-
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   width: 1440px;
   height: 100vh;
   transition: all 250ms;

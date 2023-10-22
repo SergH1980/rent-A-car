@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SideBarWrap = styled.div`
   background-color: #eeecec;
@@ -10,6 +10,7 @@ export const SideBarWrap = styled.div`
 
   position: fixed;
   padding: 150px 20px;
+  z-index: 2;
 
   top: 0;
 

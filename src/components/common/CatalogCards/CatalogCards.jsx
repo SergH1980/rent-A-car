@@ -44,7 +44,7 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
     }
   }
   function onOpen(event) {
-    setClickedCard(event.currentTarget.getAttribute('car'));
+    setClickedCard(event.currentTarget.getAttribute('id'));
     setIsModalOpen(true);
   }
 
@@ -86,7 +86,7 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
             </MainInfoWrap>
             <SecondaryInfoWrap>{secondaryInfo}</SecondaryInfoWrap>
             <div>
-              <CardButton type="button" onClick={onOpen} car={card.id}>
+              <CardButton type="button" onClick={onOpen} id={card.id}>
                 Learn more
               </CardButton>
               {clickedCard === card.id && (

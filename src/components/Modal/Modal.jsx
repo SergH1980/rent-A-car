@@ -21,6 +21,7 @@ import {
   ConditionItem,
   ConditionValue,
   RentalButton,
+  PhoneLink,
 } from './Modal.styled';
 
 export default function Modal({ open, onClose, card }) {
@@ -114,7 +115,15 @@ export default function Modal({ open, onClose, card }) {
             </ConditionLine>
           </ConditionList>
         </ConditionsWrap>
-        <RentalButton type="button">Rental car</RentalButton>
+        <RentalButton type="button">
+          <PhoneLink
+            href="tel:+380730000000"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn more
+          </PhoneLink>
+        </RentalButton>
       </ModalWrap>
     </>,
     document.getElementById('modal')

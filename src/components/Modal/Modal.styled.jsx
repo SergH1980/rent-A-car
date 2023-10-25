@@ -177,7 +177,6 @@ export const ConditionValue = styled.span`
 export const RentalButton = styled.button`
   width: 168px;
   height: 44px;
-  padding: 12px 50px;
   border-radius: 12px;
   background-color: #3470ff;
   border: none;
@@ -185,11 +184,15 @@ export const RentalButton = styled.button`
   cursor: pointer;
   color: white;
 
-  font-size: 14px;
-  line-height: 1.43;
-
   &:hover,
   &:focus {
     background-color: #0b44cd;
   }
+`;
+
+export const PhoneLink = styled.a`
+  font-size: 14px;
+  line-height: 1.43;
+  color: white;
+  text-decoration: none;
 `;

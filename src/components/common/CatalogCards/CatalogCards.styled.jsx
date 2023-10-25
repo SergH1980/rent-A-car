@@ -68,11 +68,11 @@ export const CardButton = styled.button`
   border: none;
   transition: all 250ms;
   cursor: pointer;
+  color: #ffffff;
 
   &:hover,
   &:focus {
     background-color: #0b44cd;
-    color: white;
   }
 `;
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ReturnButton = styled.button`
   width: 170px;
@@ -9,10 +9,18 @@ export const ReturnButton = styled.button`
   border: none;
   transition: all 250ms;
   cursor: pointer;
+  color: white;
 
   &:hover,
   &:focus {
     background-color: #0b44cd;
-    color: white;
   }
+`;
+
+export const EmptyList = styled.h2`
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+  color: darkorange;
 `;

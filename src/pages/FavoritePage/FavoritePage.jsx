@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ReturnButton } from './FavoritePage.styled';
+import { ReturnButton, EmptyList } from './FavoritePage.styled';
 
-import FilterForm from '../../components/FilterForm/FilterForm';
 import CatalogCards from '../../components/common/CatalogCards/CatalogCards';
 
 const FavoritePage = () => {
@@ -22,13 +21,15 @@ const FavoritePage = () => {
 
   return (
     <>
-      <FilterForm />
       {favCardList.length > 0 ? (
         <CatalogCards cardsArray={favCardList} setLocalList={setLocalList} />
       ) : (
-        <ReturnButton onClick={navigateToCatalog}>
-          Return to catalog page
-        </ReturnButton>
+        <>
+          <EmptyList>You have no cars in your list!!!</EmptyList>
+          <ReturnButton onClick={navigateToCatalog}>
+            Return to catalog page
+          </ReturnButton>
+        </>
       )}
     </>
   );

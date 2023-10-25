@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDom from 'react-dom';
 import {
   ModalWrap,
@@ -20,19 +20,29 @@ import {
   ConditionLine,
   ConditionItem,
   ConditionValue,
+  RentalButton,
 } from './Modal.styled';
 
 export default function Modal({ open, onClose, card }) {
+  useEffect(() => {
+    const closeMenuByEsc = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', closeMenuByEsc);
+
+    return () => {
+      document.removeEventListener('keydown', closeMenuByEsc);
+    };
+  }, [onClose]);
   if (!open) return null;
   const rentalConditions = card.rentalConditions.split('\n');
-  console.log(card);
   const drivingAge = rentalConditions[0].split(': ');
-
   const address = card.address.split(`, `);
-
   const country = address[address.length - 1];
   const city = address[address.length - 2];
-
   const imgURL = card.img ? card.img : card.photoLink;
   const secondaryInfoFirst = [
     city,
@@ -41,15 +51,26 @@ export default function Modal({ open, onClose, card }) {
     `Year: ${card.year}`,
     `Type: ${card.type}`,
   ].join(' | ');
-
   const secondaryInfoSecond = [
     `Fuel Consumption: ${card.fuelConsumption}`,
     `Engine Size: ${card.engineSize}`,
   ].join(' | ');
+  // const modalMilage = card.mileage.slice(0, 1)];
+  const onModalOverlayClick = event => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+  const stringMileage = card.mileage.toString();
+  const newMileage = [
+    stringMileage.toString().slice(0, 1),
+    ',',
+    stringMileage.slice(1),
+  ].join(``);
 
   return ReactDom.createPortal(
     <>
-      <ModalOverlay></ModalOverlay>
+      <ModalOverlay onClick={onModalOverlayClick}></ModalOverlay>
 
       <ModalWrap>
         <ModalCloseButton type="button" onClick={onClose}>
@@ -85,7 +106,7 @@ export default function Modal({ open, onClose, card }) {
             <ConditionLine>
               <ConditionItem>{rentalConditions[1]}</ConditionItem>
               <ConditionItem>
-                Mileage: <ConditionValue>{card.mileage}</ConditionValue>
+                Mileage: <ConditionValue>{newMileage}</ConditionValue>
               </ConditionItem>
               <ConditionItem>
                 Price: <ConditionValue>{card.rentalPrice}</ConditionValue>
@@ -93,6 +114,7 @@ export default function Modal({ open, onClose, card }) {
             </ConditionLine>
           </ConditionList>
         </ConditionsWrap>
+        <RentalButton type="button">Rental car</RentalButton>
       </ModalWrap>
     </>,
     document.getElementById('modal')

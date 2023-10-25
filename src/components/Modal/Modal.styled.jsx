@@ -136,6 +136,7 @@ export const ConditionsWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 24px;
 `;
 
 export const ConditionsHead = styled.h3`
@@ -171,4 +172,24 @@ export const ConditionLine = styled.div`
 
 export const ConditionValue = styled.span`
   color: rgba(52, 112, 255, 1);
+`;
+
+export const RentalButton = styled.button`
+  width: 168px;
+  height: 44px;
+  padding: 12px 50px;
+  border-radius: 12px;
+  background-color: #3470ff;
+  border: none;
+  transition: all 250ms;
+  cursor: pointer;
+  color: white;
+
+  font-size: 14px;
+  line-height: 1.43;
+
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;

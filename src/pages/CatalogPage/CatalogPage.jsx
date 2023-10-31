@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { LoadMoreBtn } from "./CatalogPage.styled";
-import { getCars, loadMoreCars } from "../../redux/cars/operations";
-import FilterForm from "../../components/FilterForm/FilterForm";
-import CatalogCards from "../../components/common/CatalogCards/CatalogCards";
-import { selectCars } from "../../redux/cars/selectors";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoadMoreBtn } from './CatalogPage.styled';
+import { getCars, loadMoreCars } from '../../redux/cars/operations';
+import FilterForm from '../../components/FilterForm/FilterForm';
+import CatalogCards from '../../components/common/CatalogCards/CatalogCards';
+import { selectCars, filteredCars } from '../../redux/cars/selectors';
 
 const CatalogPage = () => {
+  let renderedList = [];
   const carList = useSelector(selectCars);
+  const filteredList = useSelector(filteredCars);
+
   const dispatch = useDispatch();
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const cardLimit = 8;
 
   useEffect(() => {
@@ -18,14 +21,19 @@ const CatalogPage = () => {
   }, [dispatch]);
 
   function onLoadMoreCars() {
-    setPage(page + 1);
     dispatch(loadMoreCars(page));
+    setPage(page + 1);
   }
+
+  filteredList.length > 0
+    ? (renderedList = filteredList)
+    : (renderedList = carList);
+
   return (
     <>
       <FilterForm />
 
-      <CatalogCards cardsArray={carList} />
+      <CatalogCards cardsArray={renderedList} />
 
       {page < 6 && (
         <LoadMoreBtn type="button" onClick={onLoadMoreCars}>

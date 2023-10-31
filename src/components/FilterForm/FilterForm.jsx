@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllCars } from 'redux/cars/operations';
+
 import {
   StyledFormBox,
-  FilterWrap,
+  BrandWrap,
   FilterLabel,
   FilterInput,
   FilterList,
+  PriceWrap,
   MileageWrap,
+  MileageInputWrap,
   FromInput,
   ToInput,
   SubmitButton,
@@ -36,7 +41,11 @@ export default function FilterForm() {
     'Kia',
     'Land',
   ];
-  const [selectedOption, setSelectedOption] = useState('');
+  const dispatch = useDispatch();
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
+  const [selectedFrom, setSelectedFrom] = useState('');
+  const [selectedTo, setSelectedTo] = useState('');
   const arrayRange = (start, stop, step) =>
     Array.from(
       { length: (stop - start) / step + 1 },
@@ -44,17 +53,31 @@ export default function FilterForm() {
     );
 
   const priceArray = arrayRange(10, 500, 10);
-  console.log(priceArray);
 
-  const handleDropdownChange = event => {
-    setSelectedOption(event.target.value);
-    document.activeElement.blur();
+  const handleBrandChange = event => {
+    setSelectedBrand(event.target.value);
   };
+
+  const handlePriceChange = event => {
+    setSelectedPrice(event.target.value);
+  };
+
+  const handleFromChange = event => {
+    setSelectedFrom(event.target.value);
+  };
+  const handleToChange = event => {
+    setSelectedTo(event.target.value);
+  };
+
+  function onFilterCars() {
+    dispatch(getAllCars({ brand: selectedBrand, price: selectedPrice }));
+  }
+
   return (
     <StyledFormBox>
-      <FilterWrap>
+      <BrandWrap>
         <FilterLabel>Car brand</FilterLabel>
-        <FilterInput value={selectedOption} onChange={handleDropdownChange}>
+        <FilterInput value={selectedBrand} onChange={handleBrandChange}>
           <option value="">Enter the text</option>
           {makes.map((make, index) => (
             <FilterList value={make} key={index}>
@@ -62,10 +85,10 @@ export default function FilterForm() {
             </FilterList>
           ))}
         </FilterInput>
-      </FilterWrap>
-      <FilterWrap>
+      </BrandWrap>
+      <PriceWrap>
         <FilterLabel>Price/ 1 hour</FilterLabel>
-        <FilterInput value={selectedOption} onChange={handleDropdownChange}>
+        <FilterInput value={selectedPrice} onChange={handlePriceChange}>
           <option value="">To $</option>
           {priceArray.map((price, index) => (
             <FilterList value={price} key={index}>
@@ -73,15 +96,27 @@ export default function FilterForm() {
             </FilterList>
           ))}
         </FilterInput>
-      </FilterWrap>
-      <FilterWrap>
+      </PriceWrap>
+      <MileageWrap>
         <FilterLabel>Car mileage / km</FilterLabel>
-        <MileageWrap>
-          <FromInput placeholder="From" type="text"></FromInput>
-          <ToInput placeholder="From" type="text"></ToInput>
-        </MileageWrap>
-      </FilterWrap>
-      <SubmitButton type="submit">Search</SubmitButton>
+        <MileageInputWrap>
+          <FromInput
+            placeholder="From"
+            type="text"
+            onChange={handleFromChange}
+            value={selectedFrom}
+          ></FromInput>
+          <ToInput
+            placeholder="To"
+            type="text"
+            onChange={handleToChange}
+            value={selectedTo}
+          ></ToInput>
+        </MileageInputWrap>
+      </MileageWrap>
+      <SubmitButton type="button" onClick={onFilterCars}>
+        Search
+      </SubmitButton>
     </StyledFormBox>
   );
 }

@@ -16,7 +16,7 @@ import {
   SubmitButton,
 } from './FilterForm.styled';
 
-export default function FilterForm() {
+export default function FilterForm({ setFilterOn, returnToCatalog }) {
   const makes = [
     'Buick',
     'Volvo',
@@ -46,6 +46,7 @@ export default function FilterForm() {
   const [selectedPrice, setSelectedPrice] = useState('');
   const [selectedFrom, setSelectedFrom] = useState('');
   const [selectedTo, setSelectedTo] = useState('');
+
   const arrayRange = (start, stop, step) =>
     Array.from(
       { length: (stop - start) / step + 1 },
@@ -69,8 +70,13 @@ export default function FilterForm() {
     setSelectedTo(event.target.value);
   };
 
-  function onFilterCars() {
+  function onFilterCars(e) {
+    if (selectedBrand === `` && selectedPrice === ``) {
+      return;
+    }
     dispatch(getAllCars({ brand: selectedBrand, price: selectedPrice }));
+    setFilterOn(true);
+    e.target.blur();
   }
 
   return (

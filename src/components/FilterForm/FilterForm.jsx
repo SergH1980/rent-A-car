@@ -70,11 +70,29 @@ export default function FilterForm({ setFilterOn, returnToCatalog }) {
     setSelectedTo(event.target.value);
   };
 
+  const from = selectedFrom.replace(/\s/g, '');
+  const to = selectedTo.replace(/\s/g, '');
+
   function onFilterCars(e) {
-    if (selectedBrand === `` && selectedPrice === ``) {
+    e.preventDefault();
+    if (
+      selectedBrand === `` &&
+      selectedPrice === `` &&
+      from === '' &&
+      to === ''
+    ) {
+      e.target.blur();
       return;
     }
-    dispatch(getAllCars({ brand: selectedBrand, price: selectedPrice }));
+
+    dispatch(
+      getAllCars({
+        brand: selectedBrand,
+        price: selectedPrice,
+        from: selectedFrom,
+        to: selectedTo,
+      })
+    );
     setFilterOn(true);
     e.target.blur();
   }

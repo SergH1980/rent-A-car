@@ -30,6 +30,7 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
   function handleFavClick(e) {
     setFavClicked(!favClicked);
     const selectedCard = cardList.find(card => card.id === e.currentTarget.id);
+    console.log(selectedCard);
 
     let isRepeating = favCards.some(card => card.id === selectedCard.id);
     if (isRepeating) {
@@ -60,10 +61,10 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
         const imgURL = card.img ? card.img : card.photoLink;
         const isInFavorite = favCards.some(item => item.id === card.id);
 
-        const secondaryInfo = [
-          city,
-          country,
-          card.rentalCompany,
+        const secondaryInfoFirstLine = [city, country, card.rentalCompany].join(
+          ' | '
+        );
+        const secondaryInfoSecondLine = [
           card.type,
           card.fuelConsumption,
           card.id,
@@ -84,7 +85,13 @@ export default function CatalogCards({ cardsArray, setLocalList, page }) {
               </div>
               <div>{card.rentalPrice}</div>
             </MainInfoWrap>
-            <SecondaryInfoWrap>{secondaryInfo}</SecondaryInfoWrap>
+            <SecondaryInfoWrap>
+              <div>
+                {secondaryInfoFirstLine}{' '}
+                {card.premium && <span> | Premium</span>}
+              </div>
+              <div>{secondaryInfoSecondLine}</div>
+            </SecondaryInfoWrap>
             <div>
               <CardButton type="button" onClick={onOpen} id={card.id}>
                 Learn more

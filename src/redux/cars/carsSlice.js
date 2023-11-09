@@ -42,6 +42,7 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.filteredCars = action.payload || [];
+        state.carList = action.payload || [];
       })
       .addCase(getAllCars.pending, state => {
         state.isLoading = true;

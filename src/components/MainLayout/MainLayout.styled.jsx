@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-// import { Suspense as SuspenseModule } from "react";
 
 export const MainWrap = styled.main`
   max-width: 1440px;
   min-height: 100vh;
-  /* max-width: 100vw; */
+
   margin: 0 auto;
   background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -36,16 +35,8 @@ export const SidebarOverlay = styled.div`
   transition: all 250ms;
 `;
 
-// export const Suspense = styled(SuspenseModule)`
-//   flex-grow: 1;
-//   padding-top: 32px;
-// `;
-
-// export const SpinnerWrap = styled.div`
-//   position: absolute;
-//   height: 100vh;
-//   width: 100vw;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
+export const SpinnerWrap = styled.div`
+  position: absolute;
+  top: 35%;
+  left: 45%;
+`;

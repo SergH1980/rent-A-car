@@ -76,7 +76,7 @@ export const CarImg = styled.img`
 
 export const CarHeader = styled.h3`
   color: rgba(18, 20, 23, 1);
-  font-weight: 500;
+  font-family: 'ManropeMedium', sans-serif;
   font-size: 18px;
   line-height: 1.33;
   margin-top: 0;
@@ -125,7 +125,7 @@ export const OptionsList = styled.div`
 `;
 
 export const OptionsHead = styled.h3`
-  font-weight: 500;
+  font-family: 'ManropeMedium', sans-serif;
   font-size: 14px;
   line-height: 1.43;
   margin-top: 0px;
@@ -142,7 +142,8 @@ export const ConditionsWrap = styled.div`
 export const ConditionsHead = styled.h3`
   margin: 0;
   color: rgba(18, 20, 23, 1);
-  font-weight: 500px;
+
+  font-family: 'ManropeMedium', sans-serif;
   font-size: 14px;
   line-height: 1.43;
 `;

@@ -63,11 +63,16 @@ export default function Modal({ open, onClose, card }) {
     }
   };
   const stringMileage = card.mileage.toString();
-  const newMileage = [
-    stringMileage.toString().slice(0, 1),
-    ',',
-    stringMileage.slice(1),
-  ].join(``);
+  let newMileage = [];
+  if (stringMileage.length > 3) {
+    newMileage = [
+      stringMileage.slice(0, -3),
+      ',',
+      stringMileage.slice(-3),
+    ].join(``);
+  } else {
+    newMileage = stringMileage;
+  }
 
   return ReactDom.createPortal(
     <>

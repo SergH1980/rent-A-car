@@ -45,7 +45,11 @@ export const CarImg = styled.img`
 export const MainInfoWrap = styled.div`
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 8px;
+  font-size: 14px;
+  font-family: 'ManropeMedium', sans-serif;
+  line-height: 1.5;
 `;
 
 export const CarModel = styled.span`
@@ -53,9 +57,16 @@ export const CarModel = styled.span`
 `;
 
 export const SecondaryInfoWrap = styled.div`
-  margin-bottom: 31px;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  margin-bottom: 28px;
   overflow: hidden;
-  font-size: 14px;
+
+  font-size: 12px;
+  line-height: 1.5;
+  color: #12141780;
+
   width: 270px;
   height: 40px;
 `;
@@ -63,11 +74,13 @@ export const SecondaryInfoWrap = styled.div`
 export const CardButton = styled.button`
   width: 100%;
   height: 44px;
+  padding: 0px;
   border-radius: 12px;
   background-color: #3470ff;
   border: none;
   transition: all 250ms;
   cursor: pointer;
+
   color: #ffffff;
 
   &:hover,

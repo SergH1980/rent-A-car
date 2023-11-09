@@ -24,13 +24,11 @@ export const loadMoreCars = createAsyncThunk(
 
 export const getAllCars = createAsyncThunk(
   'getAllCars',
-  async ({ brand, price }, thunkAPI) => {
+  async ({ brand, price, from, to }, thunkAPI) => {
     try {
       let filteredCars = [];
       const response = await instance.get(`/cars/`);
-      if (brand === '' && price === '') {
-        return;
-      }
+
       filteredCars = response.data
         .filter(item => {
           if (brand !== '') {
@@ -44,6 +42,17 @@ export const getAllCars = createAsyncThunk(
             return providedPrice < Number(price);
           }
 
+          return response.data;
+        })
+        .filter(item => {
+          if (from !== '' && to !== '') {
+            return from < item.mileage && item.mileage < to;
+          } else if (from !== '' && to === '') {
+            let fromInfo = item.mileage > Number(from);
+            return fromInfo;
+          } else if (from === '' && to !== '') {
+            return item.mileage < Number(to);
+          }
           return response.data;
         });
       return filteredCars;

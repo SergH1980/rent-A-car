@@ -5,7 +5,7 @@ export const ReturnButton = styled.button`
   margin: 0 auto;
   height: 44px;
   border-radius: 12px;
-  background-color: #3470ff;
+  background-color: #34a234;
   border: none;
   transition: all 250ms;
   cursor: pointer;
@@ -13,14 +13,15 @@ export const ReturnButton = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #0b44cd;
+    background-color: #1d711d;
   }
 `;
 
 export const EmptyList = styled.h2`
+  margin-top: 100px;
   margin-bottom: 100px;
   margin-left: auto;
   margin-right: auto;
   font-size: 40px;
-  color: darkorange;
+  color: #3470ff;
 `;

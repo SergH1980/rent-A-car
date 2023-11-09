@@ -2,12 +2,14 @@ import { useState, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import BurgerButton from './BurgerButton/BurgerButton';
 import SideBar from '../SideBar/SideBar';
+import { Bars } from 'react-loader-spinner';
 
 import {
   MainWrap,
   Container,
   PageContainer,
   SidebarOverlay,
+  SpinnerWrap,
 } from './MainLayout.styled';
 
 export default function MainLayout() {
@@ -33,7 +35,13 @@ export default function MainLayout() {
         <PageContainer>
           <BurgerButton onSidebarToggle={onSidebarToggle} />
 
-          <Suspense fallback={null}>
+          <Suspense
+            fallback={
+              <SpinnerWrap>
+                <Bars height="180" width="180" color={'#3E85F3'} />
+              </SpinnerWrap>
+            }
+          >
             <Outlet />
           </Suspense>
         </PageContainer>

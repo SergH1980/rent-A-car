@@ -47,7 +47,7 @@ export const MainInfoWrap = styled.div`
   justify-content: space-between;
 
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'ManropeMedium', sans-serif;
   line-height: 1.5;
 `;
